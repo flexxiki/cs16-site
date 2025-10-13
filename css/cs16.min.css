@@ -1,0 +1,130 @@
+/* CS1.6-like baseline styles (updated to match Create Server dialog) */
+:root {
+  --bg-url: url('https://sun9-78.userapi.com/s/v1/if2/ai6OmFmPfwXwf-BuXEygqAhFdtKUgbkvblr5OkKCadgHUV0BmTeiME2bqQ7iFJCT1TtmkApLCRo-8rdTpMhGYheo.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,800x600&from=bu&cs=800x0');
+  --accent: #c9b86b; /* yellowish for tab text */
+  --muted: #d0d0d0;
+  --dialog-green: #3d4b3a;
+  --dialog-inner: #2f3a2a;
+  --dialog-border: #5a6a55;
+  --button-bg: #2e2e2e;
+}
+*{box-sizing:border-box;font-family: 'Tahoma', 'Verdana', sans-serif;}
+html,body,#app{height:100%;margin:0;background:#000;}
+.background{
+  position:fixed;inset:0;background-image:var(--bg-url);background-size:cover;background-position:center;
+  /* more saturated and contrasty like reference */
+  filter:grayscale(.15) contrast(1.15) saturate(1.25) blur(0.3px);
+  opacity:1;
+}
+
+/* Main menu buttons styled like CS 1.6 menu (left bottom) */
+.main-menu{
+  position:fixed;left:18px;bottom:28px;display:flex;flex-direction:column;gap:6px;z-index:30;padding-left:6px;
+}
+.menu-btn{
+  background:transparent;border:0;padding:6px 0;color:#c7c7c7;min-width:0;text-align:left;
+  font-size:17px;line-height:1;font-family: Tahoma, Verdana, sans-serif;
+  cursor:pointer;transition:color .08s ease, text-shadow .12s ease;outline:0;
+}
+.menu-btn:hover{color:#f0ce68;text-shadow:0 0 8px rgba(240,206,104,0.25);transform:translateX(4px);}
+.menu-btn:hover{transform:translateY(1px);background:linear-gradient(#3a3a3a,#1b1b1b);color:#fff;box-shadow:inset 0 -3px 0 rgba(0,0,0,0.6);}
+
+/* Dialog nailed to CS 1.6 look */
+@keyframes cs-fade-in{from{opacity:0;transform:translateY(8px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+
+.cs-dialog::backdrop{background:rgba(0,0,0,0.6);}
+
+.cs-dialog .heading{
+  display:flex;align-items:center;gap:8px;padding-bottom:6px;border-bottom:1px solid rgba(0,0,0,0.4);
+  color:#e7e7e7;font-weight:700;
+}
+.cs-dialog .heading .title-icon{
+  width:18px;height:18px;background:transparent;border-radius:2px;border:1px solid rgba(0,0,0,0.3);
+}
+.cs-dialog .heading .title-text{flex:1;font-size:16px;color:#e7e7e7;}
+.cs-dialog .heading .close-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:2px 6px;color:#cfcfcf;cursor:pointer;border-radius:3px;}
+
+/* Tabs like CS */
+.cs-tabs{margin-top:8px;}
+.cs-tabs .tab-labels{display:flex;gap:6px;margin-bottom:10px;}
+.tab{padding:6px 10px;background:#344632;border:1px solid #1f2c1f;color:var(--accent);font-weight:700;border-bottom:none;}
+.tab.active{background:linear-gradient(#2f3f2f,#273226);box-shadow:inset 0 -4px 0 rgba(0,0,0,0.6);}
+
+/* content area */
+.cs-dialog .content{background:linear-gradient(#2f3a2a,#25321f);border:1px solid rgba(0,0,0,0.4);padding:14px;margin-top: -6px;}
+.cs-dialog label{display:block;margin-bottom:6px;color:#d6d6d6;}
+.cs-dialog select.cs-select{background:#2a3627;color:#d6d6d6;padding:8px;border:1px solid #202a1f;border-radius:3px;}
+.cs-dialog hr{border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0;}
+
+/* footer buttons (Start / Cancel) */
+.footer-btns{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;}
+.cs-btn{background:#2f2f2f;border:1px solid rgba(0,0,0,0.6);padding:6px 12px;color:#dcdcdc;border-radius:4px;cursor:pointer;font-size:14px;}
+.cs-btn:hover{background:#3a3a3a}
+
+/* small controls */
+.small-note{font-size:13px;color:#cfcfcf;opacity:0.9;}
+.links a{color:var(--accent);text-decoration:underline;}
+
+
+
+.cs-dialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%) scale(1);
+  background: #4b5c46;
+  border: 2px solid #32402e;
+  color: #d6d6d6;
+  padding: 20px;
+  z-index: 50;
+  min-width: 420px;
+  max-width: 600px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.photo-grid img {
+  width: 100%;
+  cursor: pointer;
+  border: 2px solid #3c523c;
+  transition: transform .15s ease;
+}
+.photo-grid img:hover {
+  transform: scale(1.05);
+  border-color: #7b9e7b;
+}
+#lang-switch {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #c7c7c7;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lang-btn:hover {
+  color: #f0ce68; /* жёлтый при наведении */
+}
+
+.lang-btn.active {
+  color: #f0ce68;
+  text-decoration: underline;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>flexxi — CS 1.6 tribute</title>
+<link rel="stylesheet" href="css/cs16.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<!-- Preload assets from roman.asd.lol (same assets used as reference) -->
+<link rel="preload" href="intro.webm" as="video">
+<link rel="preload" href="background.png" as="image">
+<link rel="preload" href="menu_click.wav" as="audio">
+<link rel="preload" href="window_close.wav" as="audio">
+</head>
+<body>
+<div id="app">
+  <!-- background -->
+  <div class="background" aria-hidden="true"></div>
+
+  <!-- language toggle -->
+  <div class="lang-toggle">
+    <button id="lang-btn" aria-label="Toggle language">EN / RU</button>
+  </div>
+
+  <!-- left-lower menu -->
+  <nav class="main-menu" aria-label="Main menu">
+    <button class="menu-btn" data-section="about">About Me<br><span class="ru">Обо мне</span></button>
+    <button class="menu-btn" data-section="achievements">Achievements<br><span class="ru">Достижения</span></button>
+    <button class="menu-btn" data-section="settings">Settings<br><span class="ru">Настройки</span></button>
+    <button class="menu-btn" data-section="exit">Exit<br><span class="ru">Выход</span></button>
+  </nav>
+
+  <!-- dialogs -->
+  <dialog id="about-dialog" class="cs-dialog">
+    <div class="heading">About Me / Обо мне <button class="close-btn" data-target="about-dialog">×</button></div>
+    <div class="content" id="about-content">
+      <p class="en">
+        Hi, I'm Artem, also known in-game as <strong>flexxi</strong>. Welcome to my little portfolio and a tribute to the game I love.
+        I started playing CS 1.6 around the age of 7, approximately since 2011. This game has been a huge part of my life ever since.
+        I’ve attended numerous LAN tournaments, including Goldenguns, and participated in leagues on fastcup.net, where I even managed to win some money.
+        I’m currently 21 years old, born and living in the city of Ufa. Playing CS 1.6 always makes me feel a bit younger – like that kid eager for the weekend to dive into the world of clan wars and sweet frags.
+      </p>
+      <p class="ru">
+        Привет, я Артём, также известный в игре как <strong>flexxi</strong>. Добро пожаловать на моё портфолио — дань уважения игре, которую я люблю.
+        Я начал играть в CS 1.6 примерно с 7 лет, где-то с 2011 года. Игра стала важной частью моей жизни.
+        Я посетил множество LAN-турниров, включая Goldenguns, и участвовал в лигах на fastcup.net, где даже выигрывал немного денег.
+        Сейчас мне 21 год, я родился и живу в Уфе. CS 1.6 возвращает ощущение молодости — тот мальчишка, который ждет выходных ради кланваров и фрагов.
+      </p>
+    </div>
+  </dialog>
+
+  <dialog id="achievements-dialog" class="cs-dialog">
+    <div class="heading">Achievements / Достижения <button class="close-btn" data-target="achievements-dialog">×</button></div>
+    <div class="content" id="achievements-content">
+      <ul class="en">
+        <li>Participated in Goldenguns LANs</li>
+        <li>Played on competitive fastcup.net leagues (prize wins)</li>
+        <li>Many local clanwar highlights and memorable frags</li>
+      </ul>
+      <ul class="ru">
+        <li>Участие в LAN-турнирах Goldenguns</li>
+        <li>Игра в лиге fastcup.net (призовые места)</li>
+        <li>Много локальных кланваров и запоминающихся фрагов</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="settings-dialog" class="cs-dialog" aria-label="Options">
+  <div class="heading">
+    <div class="title-text">Options</div>
+    <button class="close-btn" data-target="settings-dialog">×</button>
+  </div>
+
+  <div class="cs-tabs">
+    <div class="tab-labels">
+      <div class="tab active" data-tab="profile">Profile</div>
+      
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div class="tab-content" id="profile" style="display:block;">
+      <p>Player name: <b>flexxi</b></p>
+      <p>City: Ufa</p>
+      <p>Age: 21</p>
+      <p>Telegram: <a href="https://t.me/z00mep" target="_blank">@z00mep</a></p>
+      <p>BUY MY SETTINGS: <a href="https://boosty.to/flexxiki" target="_blank">boosty.to/flexxiki</a></p>
+    </div>
+
+    <!-- PHOTOS TAB -->
+    <div class="tab-content" id="photos">
+      <div class="photo-grid">
+        <img src="photos/1.jpg" alt="Photo 1" onclick="openPhoto(this)">
+        <img src="photos/2.jpg" alt="Photo 2" onclick="openPhoto(this)">
+        <img src="photos/3.jpg" alt="Photo 3" onclick="openPhoto(this)">
+        <img src="photos/4.jpg" alt="Photo 4" onclick="openPhoto(this)">
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- fullscreen preview -->
+<div id="photo-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:999; align-items:center; justify-content:center;">
+  <img id="photo-preview" src="" style="max-width:80%; max-height:80%; border:3px solid #7b9e7b;">
+  <button onclick="closePhoto()" style="position:absolute; top:20px; right:30px; background:#2a3b2a; color:#fff; border:1px solid #4f684f; padding:4px 12px;">Close</button>
+</div>
+
+  <dialog id="exit-dialog" class="cs-dialog">
+    <div class="heading">Exit / Выход <button class="close-btn" data-target="exit-dialog">×</button></div>
+    <div class="content">
+      <p class="en">Are you sure you want to quit?</p>
+      <p class="ru">Вы действительно хотите выйти?</p>
+      <menu class="exit-menu">
+        <button id="quit-yes">Yes / Да</button>
+        <button id="quit-no">No / Нет</button>
+      </menu>
+    </div>
+  </dialog>
+
+  <!-- audio elements -->
+  <audio id="click-sound" src="menu_click.wav" preload="auto"></audio>
+  <audio id="close-sound" src="window_close.wav" preload="auto"></audio>
+
+  <!-- intro overlay (optional) -->
+  <div id="intro-overlay" class="intro hidden">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="intro.webm" type="video/webm">
+    </video>
+  </div>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

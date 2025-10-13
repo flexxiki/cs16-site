@@ -1,0 +1,10 @@
+/* Final project tweaks */
+.settings-box pre{font-family: 'Courier New', monospace; font-size:14px; color:#e6e6e6; line-height:1.05;}
+.links{margin-top:10px;display:flex;gap:12px;flex-direction:column;}
+.links a{color:#c9b86b;text-decoration:underline;}
+.intro.hidden{display:none;}
+.intro{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:50;}
+.intro video{max-width:80%;max-height:80%;border:3px solid rgba(255,255,255,0.05);border-radius:6px;}
+.exit-menu{display:flex;gap:8px;margin-top:12px;}
+.exit-menu button{padding:8px 12px;border-radius:4px;border:1px solid rgba(0,0,0,0.6);background:#2f2f2f;color:#fff;cursor:pointer;}
+.ru{display:none;} /* default will be toggled by JS */
