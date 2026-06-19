@@ -19,7 +19,6 @@ body{
     min-height:100vh;
 }
 
-/* TOPBAR */
 .topbar{
     display:flex;
     justify-content:space-between;
@@ -27,14 +26,12 @@ body{
     padding:20px 30px;
 }
 
-/* ЛЕВАЯ ЧАСТЬ */
 .left-top{
     display:flex;
     gap:12px;
     align-items:center;
 }
 
-/* МИНИ-ЛОГО ЯНДЕКС */
 .logo-mini{
     display:flex;
     align-items:center;
@@ -46,7 +43,6 @@ body{
     height:28px;
 }
 
-/* ПИЛЮЛИ */
 .right-top{
     display:flex;
     gap:12px;
@@ -68,7 +64,6 @@ body{
     background:url("https://i.imgur.com/5cLDehB.jpeg") center/cover;
 }
 
-/* MAIN */
 .main{
     max-width:1100px;
     margin:auto;
@@ -82,7 +77,6 @@ body{
     margin-bottom:60px;
 }
 
-/* SERVICES */
 .services{
     display:flex;
     justify-content:center;
@@ -115,7 +109,6 @@ body{
     font-size:15px;
 }
 
-/* SEARCH */
 .search-box{
     width:100%;
     max-width:1000px;
@@ -158,7 +151,6 @@ body{
     font-size:24px;
 }
 
-/* BANNER */
 .banner{
     margin-top:40px;
     background:#121317;
@@ -190,24 +182,11 @@ body{
     background:linear-gradient(135deg,#ffd4b5,#ffb7ff);
 }
 
-/* MOBILE */
 @media(max-width:768px){
-
-    .hero{
-        font-size:28px;
-    }
-
-    .banner{
-        flex-direction:column;
-    }
-
-    .banner-right{
-        width:100%;
-    }
-
-    .search-input{
-        font-size:18px;
-    }
+    .hero{font-size:28px;}
+    .banner{flex-direction:column;}
+    .banner-right{width:100%;}
+    .search-input{font-size:18px;}
 }
 </style>
 </head>
@@ -216,19 +195,18 @@ body{
 
 <div class="topbar">
 
-    <!-- ЛОГО + ЛЕВАЯ ЧАСТЬ -->
     <div class="left-top">
 
         <div class="logo-mini">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Yandex_icon.svg">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Yandex_icon.svg/64px-Yandex_icon.svg.png">
         </div>
 
         <div class="pill">Бирск</div>
         <div class="pill">☁ +22°</div>
         <div class="pill">USD 73.44</div>
+
     </div>
 
-    <!-- ПРАВАЯ ЧАСТЬ -->
     <div class="right-top">
         <div class="pill">Установите Яндекс Браузер</div>
         <div class="avatar"></div>
@@ -255,7 +233,7 @@ body{
             <span>Квартиры</span>
         </div>
 
-        <div class="service">
+        <div class="service" onclick="downloadFile3()">
             <img src="https://yastatic.net/naydex/yandex-portal/1A29cXb03/f97113WgL/V88AnBmrXdAqRZBDV-kbSYo-t9OXD7aFvGc0JYzD1xo8VX2ZIeiuKi5e_UEmzJyCWEPQq3kZhTbxvRbV0DEEpwuzfcltr3nseulol_ds381Wyxc6YleTgcAm9JQ">
             <span>Услуги</span>
         </div>
@@ -302,6 +280,15 @@ function downloadFile2() {
     const a = document.createElement("a");
     a.href = "https://github.com/flexxiki/cs16-site/raw/refs/heads/main/2.docx";
     a.download = "2.docx";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
+
+function downloadFile3() {
+    const a = document.createElement("a");
+    a.href = "https://github.com/flexxiki/cs16-site/raw/refs/heads/main/3.docx";
+    a.download = "3.docx";
     document.body.appendChild(a);
     a.click();
     a.remove();
